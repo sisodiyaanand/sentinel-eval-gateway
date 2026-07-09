@@ -1,5 +1,7 @@
 # Sentinel Eval Gateway
 
+![CI](https://github.com/sisodiyaanand/sentinel-eval-gateway/actions/workflows/ci.yml/badge.svg)
+
 Automated LLM red-teaming and evaluation gateway that scores model responses on semantic similarity, toxicity, and hallucination risk — using **real, non-fabricated metrics** computed from actual text (no hardcoded scores).
 
 ## Why this exists
@@ -32,12 +34,23 @@ These are real outputs from running the evaluator locally — not fabricated:
 
 The metric correctly separates identical, related, and unrelated text — confirming the scoring logic behaves as expected rather than returning static values.
 
+## Testing
+
+8/8 unit tests passing, covering semantic similarity, toxicity scoring, and hallucination proxy edge cases (identical text, unrelated text, empty input, clean vs. toxic input).
+
+```cmd
+pytest tests/unit -v
+```
+
+Tests run automatically on every push via GitHub Actions (see badge above).
+
 ## Tech Stack
 
 - **API:** FastAPI + Uvicorn
 - **Metrics:** scikit-learn (TF-IDF, cosine similarity)
 - **Config:** Pydantic Settings
 - **Testing:** Pytest
+- **CI/CD:** GitHub Actions
 
 ## Setup (Windows / Conda)
 
